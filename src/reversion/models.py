@@ -6,6 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core import serializers
 from django.db import models, IntegrityError
 from django.db.models import Count
+from django_fields.fields import EncryptedTextField
 
 
 import reversion
@@ -177,7 +178,7 @@ class Version(models.Model):
     format = models.CharField(max_length=255,
                               help_text="The serialization format used by this model.")
     
-    serialized_data = models.TextField(help_text="The serialized form of this version of the model.")
+    serialized_data = EncryptedTextField(help_text="The encrypted, serialized form of this version of the model.")
     
     object_repr = models.TextField(help_text="A string representation of the object.")
     
